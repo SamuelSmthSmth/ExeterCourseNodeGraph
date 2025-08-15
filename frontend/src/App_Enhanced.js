@@ -10,20 +10,16 @@ import {
   useKeyboardShortcuts,
   useCommandPalette,
   useAnalytics,
-  usePerformance
+  usePerformance,
+  useNotifications
 } from './contexts/EnhancedContexts';
-import { useNotifications, EnhancedNotificationProvider } from './components/EnhancedNotificationSystem';
-import { 
-  LoadingStateProvider, 
-  useLoading as useLoadingState,
-  GraphSkeleton 
-} from './components/EnhancedLoadingStates';
+import { EnhancedLoadingStates } from './components/EnhancedLoadingStates';
 import {
   ModernButton,
   EnhancedCourseSelector,
   EnhancedQuickActions
 } from './components/EnhancedComponents';
-import EnhancedSidebar from './components/EnhancedSidebar';
+import { EnhancedSidebar } from './components/EnhancedSidebar';
 import { CommandPalette, SettingsPanel } from './components/EnhancedDialogs';
 import { GraphMinimap, AdvancedSearchPanel } from './components/AdvancedFeatures';
 import { LearningPathBuilder, AIRecommendations } from './components/IntelligentFeatures';
@@ -372,7 +368,7 @@ function AppContent() {
   // Render main content based on current view
   const renderMainContent = () => {
     if (loading && currentView === 'graph') {
-      return <GraphSkeleton />;
+      return <EnhancedLoadingStates.GraphSkeleton />;
     }
 
     switch (currentView) {
@@ -604,6 +600,9 @@ function AppContent() {
         onPathCreated={handlePathCreated}
         existingPaths={learningPaths}
       />
+
+      {/* Loading States */}
+      <EnhancedLoadingStates />
     </div>
   );
 }
@@ -612,11 +611,7 @@ function AppContent() {
 function App() {
   return (
     <EnhancedProviders>
-      <EnhancedNotificationProvider>
-        <LoadingStateProvider>
-          <AppContent />
-        </LoadingStateProvider>
-      </EnhancedNotificationProvider>
+      <AppContent />
     </EnhancedProviders>
   );
 }

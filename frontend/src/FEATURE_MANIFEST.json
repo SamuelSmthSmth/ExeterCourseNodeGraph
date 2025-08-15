@@ -1,0 +1,82 @@
+{
+  "version": "2.0.0-ULTIMATE",
+  "name": "Enhanced Course Navigator",
+  "description": "The ultimate course visualization and planning tool",
+  "features": {
+    "Interactive Graph Minimap": {
+      "icon": "🗺️",
+      "description": "Navigate large course graphs with ease",
+      "component": "GraphMinimap",
+      "status": "active"
+    },
+    "Advanced Search & Filters": {
+      "icon": "🔍",
+      "description": "Powerful search with intelligent filtering",
+      "component": "AdvancedSearchPanel",
+      "status": "active"
+    },
+    "Learning Path Builder": {
+      "icon": "🎯",
+      "description": "Create personalized learning journeys",
+      "component": "LearningPathBuilder",
+      "status": "active"
+    },
+    "AI Recommendations": {
+      "icon": "🤖",
+      "description": "Smart course suggestions powered by AI",
+      "component": "AIRecommendations",
+      "status": "active"
+    },
+    "Progress Dashboard": {
+      "icon": "📊",
+      "description": "Comprehensive learning analytics",
+      "component": "ProgressDashboard",
+      "status": "active"
+    },
+    "Network Visualization": {
+      "icon": "🕸️",
+      "description": "Interactive physics-based graph",
+      "component": "NetworkVisualization",
+      "status": "active"
+    },
+    "Multi-View Interface": {
+      "icon": "🖥️",
+      "description": "Switch between different visualization modes",
+      "component": "ViewSwitcher",
+      "status": "active"
+    },
+    "Enhanced Shortcuts": {
+      "icon": "⌨️",
+      "description": "Comprehensive keyboard navigation",
+      "component": "KeyboardShortcuts",
+      "status": "active"
+    },
+    "Performance Monitoring": {
+      "icon": "⚡",
+      "description": "Real-time performance metrics",
+      "component": "PerformanceProvider",
+      "status": "active"
+    },
+    "Modern Design System": {
+      "icon": "🎨",
+      "description": "Beautiful, accessible UI components",
+      "component": "EnhancedGlobal.css",
+      "status": "active"
+    }
+  },
+  "compatibility": {
+    "React": ">=18.0.0",
+    "Node.js": ">=16.0.0",
+    "Modern Browsers": "ES2020+"
+  },
+  "shortcuts": {
+    "Ctrl+S": "Open Advanced Search",
+    "Ctrl+P": "Open Learning Path Builder",
+    "1-4": "Switch Views",
+    "I": "Toggle Sidebar",
+    "T": "Toggle Theme",
+    "Escape": "Close Dialogs"
+  },
+  "upgradeDate": "2025-08-15T21:52:15.446Z",
+  "previousVersion": "1.0.0-BASIC"
+}
