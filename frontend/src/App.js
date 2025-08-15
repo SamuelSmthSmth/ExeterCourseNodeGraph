@@ -84,10 +84,10 @@ function AppContent() {
       showInfo(`Loading course data for ${courseCode}...`);
       
       const response = await courseService.getCourseGraph(courseCode);
-      setSelectedCourse(response.course);
+      setSelectedCourse(response.data.course);
       setGraphData({
-        nodes: response.nodes || [],
-        edges: response.edges || []
+        nodes: response.data.nodes || [],
+        edges: response.data.edges || []
       });
       setDisabledNodes(new Set());
       setSelectedNode(null);
@@ -97,7 +97,7 @@ function AppContent() {
         graphsViewed: (appStats.graphsViewed || 0) + 1 
       });
       
-      showSuccess(`Loaded ${response.course.courseName} successfully!`, {
+      showSuccess(`Loaded ${response.data.course.courseName} successfully!`, {
         duration: 2000
       });
     } catch (error) {
