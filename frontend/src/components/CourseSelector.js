@@ -15,7 +15,7 @@ const CourseSelector = ({ courses, selectedCourse, onCourseSelect, loading }) =>
     setRecentCourses(recent);
   }, []);
 
-  const filteredCourses = courses.filter(course => {
+  const filteredCourses = (Array.isArray(courses) ? courses : []).filter(course => {
     const searchLower = searchTerm.toLowerCase();
     return (
       course.courseName.toLowerCase().includes(searchLower) ||
@@ -36,7 +36,7 @@ const CourseSelector = ({ courses, selectedCourse, onCourseSelect, loading }) =>
   // Get suggested courses (recent + popular)
   const suggestedCourses = searchTerm ? [] : [
     ...recentCourses.slice(0, 3),
-    ...courses.filter(c => !recentCourses.find(r => r.courseCode === c.courseCode)).slice(0, 5)
+    ...(Array.isArray(courses) ? courses : []).filter(c => !recentCourses.find(r => r.courseCode === c.courseCode)).slice(0, 5)
   ];
 
   const handleCourseClick = (course) => {

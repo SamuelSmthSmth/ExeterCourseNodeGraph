@@ -49,7 +49,7 @@ function AppContent() {
     try {
       setLoading(true);
       const response = await courseService.getAllCourses();
-      const coursesData = response || [];
+      const coursesData = response.data || [];
       setCourses(coursesData);
       
       updateAppStats({ 
