@@ -1,0 +1,247 @@
+/* Modern Loading States */
+.skeleton-loader {
+  background: linear-gradient(90deg, 
+    var(--skeleton-base, #e2e5e7) 25%, 
+    var(--skeleton-highlight, #f6f7f8) 50%, 
+    var(--skeleton-base, #e2e5e7) 75%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.5s infinite;
+  border-radius: 4px;
+}
+
+.dark .skeleton-loader {
+  --skeleton-base: #2a2a2a;
+  --skeleton-highlight: #3a3a3a;
+}
+
+@keyframes skeleton-shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.course-card-skeleton {
+  padding: 16px;
+  border: 1px solid var(--border-color, #e0e0e0);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: var(--card-bg, white);
+}
+
+.graph-skeleton {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  background: var(--graph-bg, #fafafa);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.graph-skeleton-nodes {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.skeleton-node {
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+
+.graph-skeleton-info {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Pulse Loader */
+.pulse-loader {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  justify-content: center;
+}
+
+.pulse-dot {
+  border-radius: 50%;
+  animation: pulse-bounce 1.4s infinite ease-in-out both;
+}
+
+.pulse-dot:nth-child(1) { animation-delay: -0.32s; }
+.pulse-dot:nth-child(2) { animation-delay: -0.16s; }
+.pulse-dot:nth-child(3) { animation-delay: 0s; }
+
+.pulse-small .pulse-dot {
+  width: 6px;
+  height: 6px;
+}
+
+.pulse-medium .pulse-dot {
+  width: 8px;
+  height: 8px;
+}
+
+.pulse-large .pulse-dot {
+  width: 12px;
+  height: 12px;
+}
+
+.pulse-primary .pulse-dot {
+  background-color: var(--primary-color, #007bff);
+}
+
+.pulse-secondary .pulse-dot {
+  background-color: var(--secondary-color, #6c757d);
+}
+
+.pulse-success .pulse-dot {
+  background-color: var(--success-color, #28a745);
+}
+
+@keyframes pulse-bounce {
+  0%, 80%, 100% {
+    transform: scale(0);
+    opacity: 0.5;
+  }
+  40% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Modern Spinner */
+.spinner-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 20px;
+}
+
+.modern-spinner {
+  position: relative;
+}
+
+.spinner-ring {
+  position: absolute;
+  border: 2px solid transparent;
+  border-radius: 50%;
+  border-top-color: var(--primary-color, #007bff);
+  animation: spinner-rotate 1s linear infinite;
+}
+
+.spinner-small .spinner-ring {
+  width: 20px;
+  height: 20px;
+}
+
+.spinner-medium .spinner-ring {
+  width: 32px;
+  height: 32px;
+}
+
+.spinner-large .spinner-ring {
+  width: 48px;
+  height: 48px;
+}
+
+.spinner-ring:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.spinner-ring:nth-child(2) {
+  animation-delay: 0.1s;
+  border-top-color: var(--secondary-color, #6c757d);
+  width: 85%;
+  height: 85%;
+  top: 7.5%;
+  left: 7.5%;
+}
+
+.spinner-ring:nth-child(3) {
+  animation-delay: 0.2s;
+  border-top-color: var(--accent-color, #17a2b8);
+  width: 70%;
+  height: 70%;
+  top: 15%;
+  left: 15%;
+}
+
+@keyframes spinner-rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.spinner-text {
+  font-size: 14px;
+  color: var(--text-secondary, #6c757d);
+  margin: 0;
+  text-align: center;
+}
+
+/* Progress Bar */
+.progress-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.progress-text {
+  font-size: 14px;
+  color: var(--text-primary, #333);
+  text-align: center;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 6px;
+  background-color: var(--progress-bg, #e9ecef);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, 
+    var(--primary-color, #007bff) 0%, 
+    var(--accent-color, #17a2b8) 100%
+  );
+  transition: width 0.3s ease;
+  border-radius: 3px;
+}
+
+.progress-fill.animated {
+  background-size: 200% 100%;
+  animation: progress-shimmer 2s infinite;
+}
+
+@keyframes progress-shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Dark mode adjustments */
+.dark .course-card-skeleton {
+  --card-bg: #2a2a2a;
+  --border-color: #404040;
+}
+
+.dark .graph-skeleton {
+  --graph-bg: #1a1a1a;
+}
+
+.dark .progress-bar {
+  --progress-bg: #404040;
+}
+
+.dark .spinner-text,
+.dark .progress-text {
+  --text-secondary: #aaa;
+  --text-primary: #fff;
+}
