@@ -9,6 +9,7 @@ import { NotificationProvider, useNotifications } from './components/Notificatio
 import { SpinnerLoader, GraphSkeleton } from './components/LoadingStates';
 import './styles/App.css';
 import './styles/CourseSelector.css';
+import './styles/ObsidianGraph.css';
 
 function AppContent() {
   const { isDarkMode, toggleTheme } = useTheme();

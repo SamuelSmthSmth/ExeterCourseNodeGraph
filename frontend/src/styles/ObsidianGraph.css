@@ -1,0 +1,241 @@
+/* Obsidian-style Graph Styles */
+.obsidian-graph-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.obsidian-graph-container svg {
+  width: 100%;
+  height: 100%;
+  cursor: grab;
+}
+
+.obsidian-graph-container svg:active {
+  cursor: grabbing;
+}
+
+/* Node text with better contrast */
+.obsidian-node text {
+  fill: #ffffff;
+  font-weight: 600;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+  pointer-events: none;
+  user-select: none;
+}
+
+.obsidian-node text.module-code {
+  font-size: 12px;
+  font-weight: 700;
+  fill: #ffffff;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9);
+}
+
+.obsidian-node text.module-title {
+  font-size: 9px;
+  font-weight: 500;
+  fill: #e2e8f0;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+.obsidian-node.disabled text {
+  fill: #94a3b8;
+  opacity: 0.6;
+}
+
+.obsidian-node:not(.disabled):hover .node-main {
+  filter: brightness(1.3) saturate(1.2);
+  stroke-width: 3;
+}
+
+.obsidian-node:not(.disabled):hover .node-glow {
+  opacity: 0.4;
+  r: 75;
+}
+
+.obsidian-node.dragging .node-main {
+  filter: brightness(1.5) saturate(1.3);
+  stroke-width: 4;
+}
+
+.obsidian-node.dragging .node-glow {
+  opacity: 0.6;
+  animation: pulse-glow 1s ease-in-out infinite alternate;
+}
+
+.obsidian-node.disabled {
+  opacity: 0.3;
+}
+
+.obsidian-node.disabled .node-main {
+  stroke: #64748b;
+  fill: #64748b;
+}
+
+/* Edge Styles */
+.obsidian-edge {
+  transition: all 0.2s ease;
+}
+
+.obsidian-edge .edge-main {
+  stroke-dasharray: none;
+  transition: all 0.2s ease;
+}
+
+.obsidian-edge:hover .edge-main {
+  stroke-width: 3;
+  opacity: 0.9;
+}
+
+.obsidian-edge:hover .edge-glow {
+  opacity: 0.2;
+  stroke-width: 8;
+}
+
+/* Physics Controls */
+.physics-controls {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 10;
+}
+
+.physics-button {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  color: white;
+  padding: 8px 12px;
+  font-size: 12px;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  transition: all 0.2s ease;
+}
+
+.physics-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-1px);
+}
+
+/* Graph Placeholder */
+.graph-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  border-radius: 12px;
+  color: white;
+}
+
+.placeholder-content {
+  text-align: center;
+  opacity: 0.7;
+}
+
+.placeholder-content h3 {
+  margin: 0 0 8px 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.placeholder-content p {
+  margin: 0;
+  font-size: 0.875rem;
+  opacity: 0.8;
+}
+
+/* Animations */
+@keyframes pulse-glow {
+  from {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0.9;
+    transform: scale(1.1);
+  }
+}
+
+/* Node Type Specific Styles */
+.obsidian-node[data-type="core"] .node-main {
+  fill: #8b5cf6;
+  stroke: #a855f7;
+}
+
+.obsidian-node[data-type="optional"] .node-main {
+  fill: #06b6d4;
+  stroke: #0891b2;
+}
+
+.obsidian-node[data-type="prerequisite"] .node-main {
+  fill: #ef4444;
+  stroke: #dc2626;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .physics-controls {
+    top: 8px;
+    right: 8px;
+  }
+  
+  .physics-button {
+    padding: 6px 8px;
+    font-size: 10px;
+  }
+  
+  .obsidian-node text {
+    font-size: 9px;
+  }
+  
+  .obsidian-node text:nth-of-type(2) {
+    font-size: 7px;
+  }
+}
+
+/* Dark mode enhancements */
+.dark .obsidian-graph-container {
+  background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+}
+
+.dark .physics-button {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.dark .physics-button:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Custom Selection Effects */
+.obsidian-node.selected .node-main {
+  stroke: #fbbf24;
+  stroke-width: 4;
+  filter: brightness(1.2) drop-shadow(0 0 10px #fbbf24);
+}
+
+.obsidian-node.selected .node-glow {
+  fill: #fbbf24;
+  opacity: 0.3;
+}
+
+/* Performance optimizations */
+.obsidian-node,
+.obsidian-edge {
+  will-change: transform, opacity;
+}
+
+/* Smooth zoom and pan */
+.obsidian-graph-container svg {
+  image-rendering: optimizeSpeed;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: optimize-contrast;
+}
