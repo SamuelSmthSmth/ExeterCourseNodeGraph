@@ -3,9 +3,11 @@ import CourseSelector from './components/CourseSelector';
 import NodeGraph from './components/NodeGraph';
 import Sidebar from './components/Sidebar';
 import { courseService } from './services/api';
+import { ThemeProvider, useTheme } from './contexts/ThemeContext';
 import './styles/App.css';
 
-function App() {
+function AppContent() {
+  const { isDarkMode, toggleTheme } = useTheme();
   const [courses, setCourses] = useState([]);
   const [selectedCourse, setSelectedCourse] = useState(null);
   const [graphData, setGraphData] = useState({ nodes: [], edges: [] });
@@ -79,12 +81,17 @@ function App() {
     <div className="app">
       <header className="app-header">
         <h1>University of Exeter Course Explorer</h1>
-        <CourseSelector
-          courses={courses}
-          selectedCourse={selectedCourse}
-          onCourseSelect={handleCourseSelect}
-          loading={loading}
-        />
+        <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+          <CourseSelector
+            courses={courses}
+            selectedCourse={selectedCourse}
+            onCourseSelect={handleCourseSelect}
+            loading={loading}
+          />
+          <button className="theme-toggle" onClick={toggleTheme}>
+            {isDarkMode ? '☀️' : '🌙'} {isDarkMode ? 'Light' : 'Dark'}
+          </button>
+        </div>
       </header>
 
       <main className="app-main">
@@ -117,9 +124,19 @@ function App() {
           onClose={closeSidebar}
           onNodeToggle={handleNodeToggle}
           disabledNodes={disabledNodes}
+          graphData={graphData}
+          selectedCourse={selectedCourse}
         />
       </main>
     </div>
+  );
+}
+
+function App() {
+  return (
+    <ThemeProvider>
+      <AppContent />
+    </ThemeProvider>
   );
 }
 

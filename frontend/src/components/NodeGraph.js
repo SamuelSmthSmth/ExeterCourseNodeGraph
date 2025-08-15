@@ -11,7 +11,7 @@ import {
 } from 'reactflow';
 import 'reactflow/dist/style.css';
 
-const NodeGraph = ({ nodes, edges, onNodeClick, disabledNodes }) => {
+const NodeGraph = ({ nodes, edges, onNodeClick: onNodeClickProp, disabledNodes }) => {
   // Transform data for ReactFlow
   const reactFlowNodes = useMemo(() => {
     return nodes.map(node => ({
@@ -20,23 +20,37 @@ const NodeGraph = ({ nodes, edges, onNodeClick, disabledNodes }) => {
       data: { 
         label: node.label,
         ...node.data,
-        onClick: () => onNodeClick(node)
+        onClick: () => onNodeClickProp(node)
       },
       position: { x: 0, y: 0 }, // Will be auto-layouted
       className: `node-${node.type} ${disabledNodes.has(node.id) ? 'disabled' : ''}`,
       style: {
-        background: node.type === 'course' ? '#4F46E5' : disabledNodes.has(node.id) ? '#9CA3AF' : '#10B981',
+        background: node.type === 'course' 
+          ? 'linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%)' 
+          : disabledNodes.has(node.id) 
+            ? 'linear-gradient(135deg, #9CA3AF 0%, #6B7280 100%)' 
+            : 'linear-gradient(135deg, #10B981 0%, #059669 100%)',
         color: 'white',
-        border: '2px solid #374151',
-        borderRadius: '8px',
-        padding: '10px',
-        fontSize: '12px',
+        border: '3px solid rgba(255, 255, 255, 0.3)',
+        borderRadius: '12px',
+        padding: '12px 16px',
+        fontSize: '14px',
         fontWeight: 'bold',
-        opacity: disabledNodes.has(node.id) ? 0.5 : 1,
-        cursor: 'pointer'
+        opacity: disabledNodes.has(node.id) ? 0.6 : 1,
+        cursor: 'pointer',
+        boxShadow: disabledNodes.has(node.id) 
+          ? '0 4px 8px rgba(0, 0, 0, 0.1)' 
+          : '0 8px 16px rgba(0, 0, 0, 0.2)',
+        transition: 'all 0.3s ease',
+        transform: disabledNodes.has(node.id) ? 'scale(0.95)' : 'scale(1)',
+        backdropFilter: 'blur(10px)',
+        textAlign: 'center',
+        minWidth: '120px',
+        position: 'relative',
+        overflow: 'hidden',
       }
     }));
-  }, [nodes, disabledNodes, onNodeClick]);
+  }, [nodes, disabledNodes, onNodeClickProp]);
 
   const reactFlowEdges = useMemo(() => {
     return edges.map(edge => ({
@@ -76,6 +90,7 @@ const NodeGraph = ({ nodes, edges, onNodeClick, disabledNodes }) => {
     [setEdges]
   );
 
+  // Node click handler for ReactFlow
   const handleNodeClick = useCallback((event, node) => {
     if (node.data.onClick) {
       node.data.onClick();
@@ -120,7 +135,7 @@ const NodeGraph = ({ nodes, edges, onNodeClick, disabledNodes }) => {
     if (flowNodes.length > 0) {
       layoutNodes();
     }
-  }, [flowNodes.length]); // Only run when number of nodes changes
+  }, [flowNodes.length, layoutNodes]); // Include layoutNodes in dependencies
 
   if (!nodes || nodes.length === 0) {
     return (

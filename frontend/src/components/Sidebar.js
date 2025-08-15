@@ -1,8 +1,25 @@
 import React from 'react';
+import PerformanceDashboard from './PerformanceDashboard';
 
-const Sidebar = ({ isOpen, selectedNode, onClose, onNodeToggle, disabledNodes }) => {
-  if (!isOpen || !selectedNode) {
+const Sidebar = ({ isOpen, selectedNode, onClose, onNodeToggle, disabledNodes, graphData, selectedCourse }) => {
+  if (!isOpen) {
     return null;
+  }
+
+  // Show performance dashboard when no specific node is selected
+  if (!selectedNode) {
+    return (
+      <div className="sidebar">
+        <div className="sidebar-header">
+          <h3>📊 Course Analytics</h3>
+          <button onClick={onClose} className="close-btn">×</button>
+        </div>
+        <PerformanceDashboard 
+          graphData={graphData} 
+          selectedCourse={selectedCourse} 
+        />
+      </div>
+    );
   }
 
   const isDisabled = disabledNodes.has(selectedNode.id);
